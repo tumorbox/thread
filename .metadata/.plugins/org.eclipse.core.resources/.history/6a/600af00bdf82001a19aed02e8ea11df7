@@ -1,0 +1,50 @@
+package basic;
+
+/*. 쓰레드프로그래밍을 구현하세요
+- 1부터 100까지출력 DigitThread
+- A~Z까지 출력하는 AlpahTread
+- ThreadExam01의 main메소드에서 DigitThread와 AlphaThread를
+     동시에 실행
+*/
+
+class DigitThread extends Thread {
+	public void DigitThreadrun() {
+		for (int i = 1; i <= 100; i++) {
+			System.out.println(i);
+			try {
+				Thread.sleep(200); // 실행흐름을 멈춘다.
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+}
+
+class AlphaThread extends Thread {
+	public void AlphaThreadrun() {
+		for (int i = 0; i <= 26; i++) {
+			char alph;
+			alph = (char) (i + 96);
+			System.out.println(alph);
+			try {
+				Thread.sleep(500); // 실행흐름을 멈춘다.
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}
+
+public class threadExam01 {
+	public static void main(String[] args) {
+		System.out.println("*******시작*******");
+		DigitThread d1 = new DigitThread();
+		AlphaThread a1 = new AlphaThread();
+		d1.start();
+		a1.start();
+	}
+}
